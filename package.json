@@ -9,8 +9,12 @@
   ],
   "scripts": {
     "start:app1": "pnpm --filter react-countdown-timer dev",
-    "start:app2": "pnpm --filter react-faq-component dev"
+    "start:app2": "pnpm --filter react-faq-component dev",
+    "prepare": "husky"
   },
   "author": "Prateek Silawat",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
 }

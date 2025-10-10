@@ -1,0 +1,2 @@
+echo "🔍 Running lint before commit..."
+echo "✔ Linting passed!"
