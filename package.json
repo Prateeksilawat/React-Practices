@@ -1,0 +1,16 @@
+{
+  "name": "prateek-react-practices",
+  "version": "1.0.0",
+  "description": "To learn react and practice deeply",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "start:app1": "pnpm --filter react-countdown-timer dev",
+    "start:app2": "pnpm --filter react-faq-component dev"
+  },
+  "author": "Prateek Silawat",
+  "license": "ISC"
+}
