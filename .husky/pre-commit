@@ -1,2 +1,3 @@
 echo "🔍 Running lint before commit..."
+pnpm format
 echo "✔ Linting passed!"

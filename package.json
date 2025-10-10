@@ -10,11 +10,14 @@
   "scripts": {
     "start:app1": "pnpm --filter react-countdown-timer dev",
     "start:app2": "pnpm --filter react-faq-component dev",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "author": "Prateek Silawat",
   "license": "ISC",
   "devDependencies": {
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "prettier": "^3.6.2"
   }
 }
