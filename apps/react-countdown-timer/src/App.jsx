@@ -3,9 +3,9 @@ import './App.css';
 
 function App() {
   const [isStart, setIsSet] = useState(false);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSecond] = useState(0);
+  const [hours, setHours] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [seconds, setSecond] = useState("");
 
   function handleShow() {
     setIsSet(true);
@@ -17,10 +17,8 @@ function App() {
 
   const handeInput = (e) => {
     // console.warn(e.target.name, e.target.value);
-    const {name,value} = e.target
-    
-    const numValue = value === "" ? "" : parseInt(value,10)
-
+    const { name, value } = e.target;
+    const numValue = value === '' ? '' : parseInt(value, 10);
     if (name === 'hours') {
       setHours(numValue);
     } else if (name === 'minutes') {
@@ -30,8 +28,8 @@ function App() {
     }
   };
 
-  console.warn(hours,minutes,seconds);
-  
+  console.warn(hours, minutes, seconds);
+
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col items-center justify-center border shadow-xl rounded-2xl w-[800px] h-[300px]">
@@ -47,7 +45,7 @@ function App() {
                 value={hours}
                 name="hours"
                 onChange={handeInput}
-                className="border outline-none w-[70px] h-7 text-center"
+                className="border outline-none w-[70px] h-7 text-center rounded-md"
               />
               <span>:</span>
               <input
@@ -56,7 +54,7 @@ function App() {
                 value={minutes}
                 name="minutes"
                 onChange={handeInput}
-                className="border outline-none w-[70px] h-7 text-center"
+                className="border outline-none w-[70px] h-7 text-center  rounded-md"
               />
               <span>:</span>
               <input
@@ -65,7 +63,7 @@ function App() {
                 value={seconds}
                 name="second"
                 onChange={handeInput}
-                className="border outline-none w-[70px] h-7 text-center"
+                className="border outline-none w-[70px] h-7 text-center  rounded-md"
               />
             </div>
             <div>
@@ -82,19 +80,19 @@ function App() {
         {isStart && (
           <div className="p-4 mt-2 flex flex-col items-center gap-5">
             <div className="flex items-center gap-3">
-              <div className="border outline-none w-[70px] h-7 text-center">
-                01
+              <div className="border outline-none w-[70px] h-7 text-center  rounded-md">
+                {hours}
               </div>
               <span>:</span>
-              <div className="border outline-none w-[70px] h-7 text-center">
-                01
+              <div className="border outline-none w-[70px] h-7 text-center  rounded-md">
+              {minutes}
               </div>
               <span>:</span>
-              <div className="border outline-none w-[70px] h-7 text-center">
-                01
+              <div className="border outline-none w-[70px] h-7 text-center  rounded-md">
+               {seconds}
               </div>
             </div>
-            <div>
+            <div className='flex items-center gap-2'>
               <button className="border w-[100px] h-10 text-center bg-blue-500 text-white rounded-xl cursor-pointer ">
                 Pause
               </button>
