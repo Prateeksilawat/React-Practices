@@ -3,9 +3,9 @@ import './App.css';
 
 function App() {
   const [isStart, setIsSet] = useState(false);
-  const [hours, setHours] = useState("");
-  const [minutes, setMinutes] = useState("");
-  const [seconds, setSecond] = useState("");
+  const [hours, setHours] = useState('');
+  const [minutes, setMinutes] = useState('');
+  const [seconds, setSecond] = useState('');
 
   function handleShow() {
     setIsSet(true);
@@ -85,14 +85,14 @@ function App() {
               </div>
               <span>:</span>
               <div className="border outline-none w-[70px] h-7 text-center  rounded-md">
-              {minutes}
+                {minutes}
               </div>
               <span>:</span>
               <div className="border outline-none w-[70px] h-7 text-center  rounded-md">
-               {seconds}
+                {seconds}
               </div>
             </div>
-            <div className='flex items-center gap-2'>
+            <div className="flex items-center gap-2">
               <button className="border w-[100px] h-10 text-center bg-blue-500 text-white rounded-xl cursor-pointer ">
                 Pause
               </button>
