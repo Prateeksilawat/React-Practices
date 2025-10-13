@@ -1,18 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
+import InputTimer from './components/InputTimer';
+import ShowTimer from './components/ShowTimer';
 
 function App() {
   const [isStart, setIsSet] = useState(false);
-  const [hours, setHours] = useState('');
-  const [minutes, setMinutes] = useState('');
-  const [seconds, setSecond] = useState('');
+  const [isPaused, setIsPaused] = useState(false);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSecond] = useState(0);
+  const [timerId, setTimerId] = useState(null);
 
   function handleShow() {
-    setIsSet(true);
+    if (hours < 0 || minutes < 0 || seconds <= 0) {
+      alert('Invalid Input');
+      return;
+    } else {
+      setIsSet(true);
+    }
   }
 
   function handleReset() {
     setIsSet(false);
+    resetTimer();
+  }
+  const resetTimer = () => {
+    setHours(0);
+    setMinutes(0);
+    setSecond(0);
+    clearInterval(timerId);
+  };
+  function handlePaused() {
+    setIsPaused(true);
+    clearInterval(timerId);
+  }
+
+  function handleResume() {
+    setIsPaused(false);
+    runTimer(hours, minutes, seconds);
   }
 
   const handeInput = (e) => {
@@ -28,82 +53,65 @@ function App() {
     }
   };
 
-  console.warn(hours, minutes, seconds);
+  const runTimer = (hr, min, sec, tid) => {
+    if (sec > 0) {
+      setSecond((s) => s - 1);
+    } else if (sec === 0 && min > 0) {
+      setMinutes((m) => m - 1);
+      setSecond(59);
+    } else {
+      setHours((h) => h - 1);
+      setMinutes(59);
+      setSecond(59);
+    }
+
+    if (sec === 0 && min === 0 && hr === 0) {
+      resetTimer();
+      // alert("Times Up")
+    }
+  };
+
+  useEffect(() => {
+    let tid;
+    if (isStart) {
+      tid = setInterval(() => {
+        runTimer(hours, minutes, seconds, tid);
+      }, 1000);
+      setTimerId(tid);
+    }
+
+    return () => {
+      clearInterval(tid);
+    };
+  }, [isStart, hours, minutes, seconds]);
+  // console.warn(hours, minutes, seconds);
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="flex flex-col items-center justify-center border shadow-xl rounded-2xl w-[800px] h-[300px]">
+      <div className=" flex flex-col items-center justify-center border shadow-xl rounded-2xl w-[800px] h-[300px]">
         <h1 className="font-bold text-6xl text-amber-300 text-center">
           CountDown Timer
         </h1>
         {!isStart && (
-          <div className="p-4 mt-2 flex flex-col items-center gap-5">
-            <div className="flex items-center gap-3">
-              <input
-                placeholder="HH"
-                text="number"
-                value={hours}
-                name="hours"
-                onChange={handeInput}
-                className="border outline-none w-[70px] h-7 text-center rounded-md"
-              />
-              <span>:</span>
-              <input
-                placeholder="MM"
-                text="number"
-                value={minutes}
-                name="minutes"
-                onChange={handeInput}
-                className="border outline-none w-[70px] h-7 text-center  rounded-md"
-              />
-              <span>:</span>
-              <input
-                placeholder="SS"
-                text="number"
-                value={seconds}
-                name="second"
-                onChange={handeInput}
-                className="border outline-none w-[70px] h-7 text-center  rounded-md"
-              />
-            </div>
-            <div>
-              <button
-                onClick={handleShow}
-                className="border w-[100px] h-10 text-center bg-blue-500 text-white rounded-xl cursor-pointer "
-              >
-                Start
-              </button>
-            </div>
-          </div>
+          <InputTimer
+            handleShow={handleShow}
+            handeInput={handeInput}
+            hours={hours}
+            minutes={minutes}
+            seconds={seconds}
+          />
         )}
 
         {isStart && (
-          <div className="p-4 mt-2 flex flex-col items-center gap-5">
-            <div className="flex items-center gap-3">
-              <div className="border outline-none w-[70px] h-7 text-center  rounded-md">
-                {hours}
-              </div>
-              <span>:</span>
-              <div className="border outline-none w-[70px] h-7 text-center  rounded-md">
-                {minutes}
-              </div>
-              <span>:</span>
-              <div className="border outline-none w-[70px] h-7 text-center  rounded-md">
-                {seconds}
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <button className="border w-[100px] h-10 text-center bg-blue-500 text-white rounded-xl cursor-pointer ">
-                Pause
-              </button>
-              <button
-                onClick={handleReset}
-                className="border w-[100px] h-10 text-center bg-blue-500 text-white rounded-xl cursor-pointer "
-              >
-                Reset
-              </button>
-            </div>
-          </div>
+          <ShowTimer
+            hours={hours}
+            minutes={minutes}
+            seconds={seconds}
+            isPaused={isPaused}
+            handlePaused={handlePaused}
+            handleResume={handleResume}
+            handleReset={handleReset}
+          />
         )}
       </div>
     </div>
