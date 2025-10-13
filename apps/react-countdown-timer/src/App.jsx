@@ -53,7 +53,7 @@ function App() {
     }
   };
 
-  const runTimer = (hr, min, sec, tid) => {
+  const runTimer = (hr, min, sec) => {
     if (sec > 0) {
       setSecond((s) => s - 1);
     } else if (sec === 0 && min > 0) {
