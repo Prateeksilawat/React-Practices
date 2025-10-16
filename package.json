@@ -10,6 +10,7 @@
   "scripts": {
     "start:app1": "pnpm --filter react-countdown-timer dev",
     "start:app2": "pnpm --filter react-faq-component dev",
+    "start:app3": "pnpm --filter react-emi-calculator",
     "prepare": "husky",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
