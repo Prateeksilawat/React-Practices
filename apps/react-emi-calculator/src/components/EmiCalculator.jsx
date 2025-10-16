@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const EmiCalculator = () => {
-  const [principal, setPrincipal] = useState("");
-  const [rate, setRate] = useState("");
-  const [time, setTime] = useState("");
+  const [principal, setPrincipal] = useState('');
+  const [rate, setRate] = useState('');
+  const [time, setTime] = useState('');
   const [emi, setEmi] = useState(null);
 
   const handlerChange = (e) => {
     const { name, value } = e.target;
-    if (name === "principal") setPrincipal(value);
-    else if (name === "rate") setRate(value);
-    else if (name === "time") setTime(value);
+    if (name === 'principal') setPrincipal(value);
+    else if (name === 'rate') setRate(value);
+    else if (name === 'time') setTime(value);
   };
 
   const submitHandle = () => {
@@ -19,7 +19,7 @@ const EmiCalculator = () => {
     const year = parseFloat(time);
 
     if (!P || !annualRate || !year) {
-      alert("Please enter valid values for all fields!");
+      alert('Please enter valid values for all fields!');
       return;
     }
 
