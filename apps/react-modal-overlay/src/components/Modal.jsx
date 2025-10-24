@@ -32,7 +32,10 @@ const Modal = ({ BackgroundChange, BgWhite }) => {
       const clickedOutsideAccept =
         acceptRef.current && !acceptRef.current.contains(event.target);
 
-      if ((open && clickedOutsideModal) || (offerAccept && clickedOutsideAccept)) {
+      if (
+        (open && clickedOutsideModal) ||
+        (offerAccept && clickedOutsideAccept)
+      ) {
         handleClose();
       }
     };
@@ -58,7 +61,7 @@ const Modal = ({ BackgroundChange, BgWhite }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-          
+
           {/* Modal Box */}
           <div
             ref={modalRef}
@@ -75,7 +78,8 @@ const Modal = ({ BackgroundChange, BgWhite }) => {
               Exclusive Offer Just For You!
             </h2>
             <p className="text-gray-600 text-center">
-              Click the button below to accept this amazing deal before it expires.
+              Click the button below to accept this amazing deal before it
+              expires.
             </p>
 
             <button
