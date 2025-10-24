@@ -4,7 +4,7 @@ function App() {
   return (
     <div>
       <h1 className="text-red-500 text-center font-bold text-5xl ">
-       Modal OverLay
+        Modal OverLay
       </h1>
 
       <p className="text-center">
