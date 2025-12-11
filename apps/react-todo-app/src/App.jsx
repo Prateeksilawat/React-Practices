@@ -3,14 +3,13 @@ import './App.css';
 
 function App() {
   const [input, setInput] = useState('');
-  const [todoList, setTodoList] = useState(()=>{
-    return JSON.parse(localStorage.getItem("todo")) || []
+  const [todoList, setTodoList] = useState(() => {
+    return JSON.parse(localStorage.getItem('todo')) || [];
   });
 
-  useEffect(()=>{
-  localStorage.setItem("todo", JSON.stringify(todoList));
-  },[todoList])
-
+  useEffect(() => {
+    localStorage.setItem('todo', JSON.stringify(todoList));
+  }, [todoList]);
 
   const InputHandler = (e) => {
     setInput(e.target.value);
@@ -40,16 +39,16 @@ function App() {
           Add
         </button>
       </div>
-      <div className='mt-4 border flex flex-col items-center justify-center w-3xs rounded-3xl'>
-       <h2>Task for today</h2>
-       <hr className="w-full border-t border-gray-300" />
+      <div className="mt-4 border flex flex-col items-center justify-center w-3xs rounded-3xl">
+        <h2>Task for today</h2>
+        <hr className="w-full border-t border-gray-300" />
         <ol>
-          {todoList.map((todo, index,) => (
-           <div className='flex gap-1'>
-            {index+1} <li key={index}>{todo}</li>
-           </div>
+          {todoList.map((todo, index) => (
+            <div className="flex gap-1">
+              {index + 1} <li key={index}>{todo}</li>
+            </div>
           ))}
-       </ol>
+        </ol>
       </div>
     </div>
   );
